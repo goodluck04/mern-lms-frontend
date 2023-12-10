@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import Image from "next/image";
 import avatar from "../../public/assets/avatar.png";
 import { useSession } from "next-auth/react";
-import { useSocialAuthMutation } from "@/redux/features/auth/authApi";
+import { useLogoutQuery, useSocialAuthMutation } from "@/redux/features/auth/authApi";
 import toast from "react-hot-toast";
 
 type Props = {
@@ -30,16 +30,19 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
     const { user } = useSelector((state: any) => state.auth);
     const { data } = useSession();
     const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
-
+    console.log(activeItem)
     useEffect(() => {
         if (!user) {
             if (data) {
                 socialAuth({ email: data.user?.email, name: data.user?.name, avatar: data.user?.image })
             }
         }
-        if(isSuccess){
+        if (isSuccess) {
             toast.success("Login Successfully");
         }
+
+        // console.log(data);
+
     }, [data, user])
 
 
@@ -93,15 +96,16 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                                 />
                             </div>
                             {user ? (
-                                <>
-                                    <Link href={"/profile"}>
-                                        <Image
-                                            alt=""
-                                            src={user.avtar ? user.avtar : avatar}
-                                            className="w-[25px] h-[25px] rounded-full cursor-pointer"
-                                        />
-                                    </Link>
-                                </>
+                                <Link href={"/profile"}>
+                                    <Image
+                                        alt=""
+                                        width={25}
+                                        height={25}
+                                        src={user.avatar ? user.avatar?.url : avatar}
+                                        className="w-[25px] h-[25px] rounded-full cursor-pointer"
+                                        style={{ border: activeItem === 5 ? "2px solid #ffc107" : "none" }}
+                                    />
+                                </Link>
                             ) : (
                                 <HiOutlineUserCircle
                                     size={25}
