@@ -4,6 +4,8 @@ import avatarDefault from "../../../../public/assets/avatar.png"
 import { RiLockPasswordLine } from "react-icons/ri";
 import { PiStudent } from "react-icons/pi";
 import { AiOutlineLogout } from "react-icons/ai";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import Link from 'next/link';
 
 
 type Props = {
@@ -16,8 +18,8 @@ type Props = {
 }
 
 const SideBarProfile: FC<Props> = ({ user, active, avatar, setActive, logOutHandler }) => {
-    return (  
-        <div className='w-full'>  
+    return (
+        <div className='w-full'>
             {/*my account 1 */}
             <div
                 className={`w-full flex items-center px-3 py-4 cursor-pointer ${active === 1 ? "dark:bg-slate-800 bg-slate-100" : "bg-transparent"
@@ -57,6 +59,19 @@ const SideBarProfile: FC<Props> = ({ user, active, avatar, setActive, logOutHand
                     Enrolled Courses
                 </h5>
             </div>
+            {user.role === "admin" && (
+                <Link
+                    href={"/admin"}
+                    className={`w-full flex items-center px-3 py-4 cursor-pointer ${active === 3 ? "dark:bg-slate-800 bg-slate-100" : "bg-transparent"
+                        }`}
+                    
+                >
+                    <p><MdOutlineAdminPanelSettings size={20} fill="rgb(100 116 139)" /></p>
+                    <h5 className='pl-2 800px:block hidden font-Poppins dark:text-white text-black'>
+                        Admin Dashboard
+                    </h5>
+                </Link>
+            )}
             <div
                 className={`w-full flex items-center px-3 py-4 cursor-pointer active:dark:bg-slate-800  active:bg-slate-500 bg-slate-100 bg-transparent
                     }`}
