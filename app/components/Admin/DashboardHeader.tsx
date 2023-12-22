@@ -1,3 +1,4 @@
+"use client"
 import React, { FC, useState } from 'react'
 import { ThemeSwitcher } from '@/app/utils/ThemeSwitcher'
 import { IoMdNotificationsOutline } from "react-icons/io"

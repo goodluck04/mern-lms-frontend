@@ -17,7 +17,7 @@ const CustomModel: FC<Props> = ({ open, setOpen, setRoute, component: Component 
                 open={open}
                 onClose={() => setOpen(false)}
                 aria-labelledby="modal-modal-title"
-                aria-describedby="moda;-modal-description"
+                aria-describedby="modal-modal-description"
             >
                 <Box
                 // Top 
