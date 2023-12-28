@@ -24,9 +24,9 @@ const CourseData: FC<Props> = ({
 
     const handleBenefitChange = (index: number, value: any) => {
         const updatedBenefits = [...benefits];
-        updatedBenefits[index].title = value;
+        updatedBenefits[index] = { title: value };
         setBenefits(updatedBenefits);
-    }
+    };
 
     // it will create new row to add benefit row
     const handleAddBenefit = () => {
@@ -41,9 +41,9 @@ const CourseData: FC<Props> = ({
     // handlePrerequisites
     const handlePrerequisitesChange = (index: number, value: any) => {
         const updatedPrerequisites = [...prerequisites];
-        updatedPrerequisites[index].title = value;
+        updatedPrerequisites[index] = { title: value };
         setPrerequisites(updatedPrerequisites);
-    }
+    };
 
     // it will create new row to add handlePrerequisites row
     const handlePrerequisites = () => {

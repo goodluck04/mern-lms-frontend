@@ -45,7 +45,7 @@ const CourseInformation: FC<Props> = ({ courseInfo, setCourseInfo, active, setAc
     const handleDrop = (e: any) => {
         e.preventDefault();
         setDragging(false);
-        
+
 
         const file = e.dataTransfer.files?.[0];
 
@@ -144,10 +144,12 @@ const CourseInformation: FC<Props> = ({ courseInfo, setCourseInfo, active, setAc
                 </div>
                 <br />
                 <div className='w-full   relative'>
-                    <input required
+                    <input
                         type="file"
                         accept='image/*'
                         id="file"
+                        name='thumbnail'
+                        required={courseInfo.thumbnail ? false : true}
                         className='hidden opacity-0 absolute'
                         onChange={handleFileChange}
                     />
@@ -160,7 +162,7 @@ const CourseInformation: FC<Props> = ({ courseInfo, setCourseInfo, active, setAc
                     >
                         {
                             courseInfo.thumbnail ? (
-                                <img src={courseInfo.thumbnail} alt=""
+                                <img src={courseInfo.thumbnail?.url ? courseInfo.thumbnail?.url : courseInfo.thumbnail} alt=""
                                     className='max-h-full w-full object-cover'
                                 />
                             ) : (
