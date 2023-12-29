@@ -1,5 +1,6 @@
 import { styles } from '@/app/style/styles';
-import React, { FC, useState } from 'react'
+import { useGetHeroDataQuery } from '@/redux/features/layout/layoutApi';
+import React, { FC, useEffect, useState } from 'react'
 
 type Props = {
     courseInfo: any;
@@ -10,6 +11,18 @@ type Props = {
 
 const CourseInformation: FC<Props> = ({ courseInfo, setCourseInfo, active, setActive }) => {
     const [dragging, setDragging] = useState(false);
+
+    const {data} = useGetHeroDataQuery("Categories");
+    const [categories,setCategories] = useState([])
+
+    useEffect(() => {
+      if(data){
+        setCategories(data.layout.categories);
+      }
+    
+     
+    }, [data])
+    
 
 
     const handleSubmit = (e: any) => {
@@ -107,7 +120,8 @@ const CourseInformation: FC<Props> = ({ courseInfo, setCourseInfo, active, setAc
                     </div>
                 </div>
                 <br />
-                <div>
+                <div className='w-full flex justify-between'>
+                    <div className='w-[45%]'>
                     <label htmlFor="" className={`${styles.label}`}>
                         Course Tags
                     </label>
@@ -118,6 +132,21 @@ const CourseInformation: FC<Props> = ({ courseInfo, setCourseInfo, active, setAc
                         placeholder='MERN MEAN REACT'
                         className={`${styles.input}`}
                     />
+                    </div>
+                    <div className='w-[45%]'>
+                        <label htmlFor="" className={`${styles.label}`}>Course Categories</label>
+                       <select name="" id="" value={courseInfo.category}
+                       onChange={(e:any) => 
+                    setCourseInfo({...courseInfo, categories: e.target.value})}
+                       className={`${styles.input}`}>
+                        <option className='dark:bg-black' value="">Select Category</option>
+                        {categories.map((item:any)=>(
+                            <option className='dark:bg-black' value={item.title} key={item._id}>
+                                {item.title}
+                            </option>
+                        ))}
+                       </select>
+                    </div>
                 </div>
                 <br />
                 <div className='w-full flex justify-between'>

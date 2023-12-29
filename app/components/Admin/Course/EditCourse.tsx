@@ -30,6 +30,7 @@ const CreateCourse: FC<Props> = ({ id }) => {
             setCourseInfo({
                 name: editCourseData?.name,
                 description: editCourseData?.description,
+                categories: editCourseData?.categories,
                 price: editCourseData?.price,
                 estimatedPrice: editCourseData?.estimatedPrice,
                 tags: editCourseData?.tags,
@@ -71,6 +72,7 @@ const CreateCourse: FC<Props> = ({ id }) => {
         estimatedPrice: "",
         tags: "",
         level: "",
+        categories:"",
         demoUrl: "",
         thumbnail: "",
     });
@@ -82,6 +84,7 @@ const CreateCourse: FC<Props> = ({ id }) => {
             title: "",
             description: "",
             videoSection: "Untitled Section",
+            videoLength: "",
             links: [
                 {
                     title: "",
@@ -92,7 +95,7 @@ const CreateCourse: FC<Props> = ({ id }) => {
         },
     ]);
     const [courseData, setCourseData] = useState({});
-    console.log(courseData)
+    // console.log(courseData)
 
     const handleSubmit = async () => {
         // format benefits array
@@ -105,6 +108,7 @@ const CreateCourse: FC<Props> = ({ id }) => {
             title: courseContent.title,
             description: courseContent.description,
             videoSection: courseContent.videoSection,
+            videoLength: courseContent.videoLength,
             links: courseContent.links.map((link) => ({
                 title: link.title,
                 url: link.url,
@@ -121,6 +125,7 @@ const CreateCourse: FC<Props> = ({ id }) => {
             tags: courseInfo.tags,
             thumbnail: courseInfo.thumbnail,
             level: courseInfo.level,
+            categories: courseInfo.categories,
             demoUrl: courseInfo.demoUrl,
             totalVideos: courseContentData.length,
             benefits: formattedBenefits,

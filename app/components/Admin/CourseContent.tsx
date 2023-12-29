@@ -1,3 +1,4 @@
+// "use client"
 import { styles } from '@/app/style/styles';
 import React, { FC, useState } from 'react';
 import { AiOutlineDelete, AiOutlinePlus, AiOutlinePlusCircle } from 'react-icons/ai';
@@ -18,7 +19,7 @@ const CourseContent: FC<Props> = ({
   setCourseContentData,
   active,
   setActive,
-  handleSubmit: handleCourseSubmit,
+  handleSubmit: handleCourseSubmit ,
 }) => {
   // collapse functionality
   const [isCollapse, setIsCollapsed] = useState(Array(courseContentData.length).fill(false));
@@ -38,11 +39,6 @@ const CourseContent: FC<Props> = ({
     setIsCollapsed(updatedCollapsed);
   };
 
-//   const handleRemoveLink = (index: number, linkIndex: number) => {
-//     const updatedData = [...courseContentData];
-//     updatedData[index].links.splice(linkIndex, 1);
-//     setCourseContentData(updatedData);
-//   };
 
   const handleAddlink = (index: number) => {
     setCourseContentData((prevData: any) => {
@@ -180,6 +176,15 @@ const CourseContent: FC<Props> = ({
       updatedData[index] = { ...updatedData[index], videoUrl: value };
       return updatedData;
     });
+  }; 
+
+
+  const handleVideoLengthChange = (index: number, value: string) => {
+    setCourseContentData((prevData: any) => {
+      const updatedData = [...prevData];
+      updatedData[index] = { ...updatedData[index], videoLength: value };
+      return updatedData;
+    });
   };
 
   const handleDescriptionChange = (index: number, value: string) => {
@@ -296,6 +301,18 @@ const CourseContent: FC<Props> = ({
                       className={styles.input}
                       value={item.videoUrl}
                       onChange={(e) => handleVideoUrlChange(index, e.target.value)}
+                    />
+                  </div>
+                  <div className='mb-3'>
+                    <label htmlFor='' className={styles.label}>
+                      Video Length (in minutes)
+                    </label>
+                    <input
+                      type='number'
+                      placeholder='20 min..'
+                      className={styles.input}
+                      value={item.videoLength}
+                      onChange={(e) => handleVideoLengthChange(index, e.target.value)}
                     />
                   </div>
                   <div className='mb-3'>
