@@ -52,7 +52,7 @@ const UserAnalytics = ({ isDashboard }: Props) => {
                     <Loader />
                 ) : (
                     <div className={`${isDashboard ? "mt-[50px]" : " dark:bg-[#111c43] shadow-sm pb-5 rounded-sm"}`}>
-                        <div className={`${isDashboard ? "!ml-8 mb-5" : "pt-[50px]"}`}>
+                        <div className={`${isDashboard ? "!ml-8 mb-2" : "pt-[50px]"}`}>
                             <h1 className={`${styles.title} ${isDashboard && "!text-[20px]"} px-5 !text-start`}>
                                 Users Analytics
                             </h1>
