@@ -5,7 +5,8 @@ import Header from "./components/Header";
 import Hero from "./components/Route/Hero";
 import Courses from "./components/Route/Courses";
 import Reviews from "./components/Route/Reviews";
-import FAQ from "./components/FAQ/FAQ"
+import FAQ from "./components/FAQ/FAQ";
+import Footer from "./components/Footer/Footer"
 
 
 interface Props { }
