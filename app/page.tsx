@@ -35,6 +35,7 @@ const Page: FC<Props> = (props) => {
       <Courses />
       <Reviews />
       <FAQ />
+      <Footer />
     </div>
   )
 }
