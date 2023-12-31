@@ -30,7 +30,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
     const { user } = useSelector((state: any) => state.auth);
     const { data } = useSession();
     const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
-    console.log(activeItem)
+    // console.log(activeItem)
     useEffect(() => {
         if (!user) {
             if (data) {
